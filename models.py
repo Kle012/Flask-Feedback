@@ -1,3 +1,5 @@
+"""Models for Feedback app."""
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt 
 
@@ -10,6 +12,7 @@ def connect_db(app):
     db.init_app(app)
 
 class User(db.Model):
+    """User model."""
     __tablename__ = 'users'
     username = db.Column (db.String(20), primary_key = True)
     password = db.Column (db.Text, nullable = False)
