@@ -3,12 +3,13 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Feedback
 from forms import RegisterForm, LoginForm, DeleteForm, FeedbackForm
 from werkzeug.exceptions import Unauthorized
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///feedback'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = "Secret"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'hellosecret')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
